@@ -322,76 +322,118 @@ let food = [
 ];
 
 
-/* 
-You task is to apply different arrays methods to get the desired following result.
+let allFood= document.getElementById("allFood");
+let foodvegetables= document.getElementById("foodvegetables");
+let foodFruits = document.getElementById("foodFruits");
+let foodprotien = document.getElementById("foodprotien");
+let foodnuts = document.getElementById("foodnuts");
+let foodGrain= document.getElementById("foodGrain");
+let foodDairy = document.getElementById("foodDairy");
+let foodcalAb100 = document.getElementById("foodcalAb100");
+let foodcalbel100= document.getElementById("foodcalbel100");
+let foodprothtol = document.getElementById("foodprothtol");
+let foodcabltoh = document.getElementById("foodcabltoh");
 
-
-
-
-- [ ]  list all the food items with category dairy
-- [ ]  list all the food items with calorie above 100
-- [ ]  list all the food items with calorie below 100
-- [ ]  list all the food items with highest protien content to lowest
-- [ ]  list all the food items with lowest cab content to highest
-
-Note: You will need to create functions for different operations and you will pass the original data as the input to the function and the function should return the desired result
-
-*/
 
 //1) list all the food items
 
 let foodList = (foodItems)=>{
-    foodItems.forEach(item=>{
-        console.log(item.foodname);
-    })
+   let foods=foodItems.map(item=>item.foodname);
+   return foods;
 };
-console.log("all food items");
-foodList(food);
+
+let foods = foodList(food);
+let allfoodhtml = `
+<h1>All food list</h1>`;
+
+foods.forEach((item)=>{
+   
+allfoodhtml += `
+<ul>
+<li>
+ ${item}
+</li>
+</ul>
+
+`
+})
+
+allFood.innerHTML=allfoodhtml;
+
+
 
 
 //2) list all the food items with category vegetables
 
 let vegetables = (vegetablesItems)=>{
     let vegs= vegetablesItems.filter(item=> item.category==='Vegetable');
-
-    return vegs;
+    let vegetables = vegs.map(item=>item.foodname);
+    return vegetables;
   
 }
 
 console.log("vegetables");
  let vegs= vegetables(food);
 
+ foodvegetables.innerHTML=`
+ <h1>food with vegetable category</h1>
+ `;
+
  vegs.forEach(veg=>{
-    console.log(veg);
+    foodvegetables.innerHTML+=`
+     <ul>
+     <li>
+     ${veg}
+     </li>
+     </ul>
+
+    `;
 })
 
 //3) list all the food items with category fruit
 
 let fruits = (items)=>{
     let fruitsItems=items.filter(item=>item.category==='Fruit');
-
-    return fruitsItems;
+    let fruit=fruitsItems.map((item)=>item.foodname);
+    return fruit;
 }
-
+foodFruits.innerHTML = `
+<h1>food with fruit category</h1>
+`;
 let fruitsItems = fruits(food);
 
-console.log("fruits");
+
 fruitsItems.forEach(item=>{
-    console.log(item);
+    foodFruits.innerHTML+=`
+     <ul>
+     <li>
+     ${item}
+     </li>
+     </ul>
+    `
 })
 
 //4) list all the food items with category protien
 let protien = (items)=>{
     let protienItems=items.filter(item=>item.category==='Protein');
-
-    return protienItems;
+    let foodprotiens = protienItems.map(item=>item.foodname);
+    return foodprotiens;
 }
+
+foodprotien.innerHTML=`
+<h1>
+ food with protien
+</h1>
+`
 
 let protienItems = protien(food);
 
-console.log("protien");
 protienItems.forEach(item=>{
-    console.log(item);
+    foodprotien.innerHTML+=`
+     <ul>
+     <li>${item} </li>
+     </ul>
+    `
 })
 
 
@@ -400,15 +442,21 @@ protienItems.forEach(item=>{
 
 let nuts = (items)=>{
     let nut=items.filter(item=>item.category==='Nuts');
-    return nut;
+    let nutnames = nut.map(item=>item.foodname);
+    return nutnames;
 }
-
+foodnuts.innerHTML=`
+<h1> Food with category nuts </h1>
+`
 let nut = nuts(food);
 
-console.log("nuts");
 
 nut.forEach(item=>{
-    console.log(item);
+  foodnuts.innerHTML +=`
+  <ul>
+  <li>${item}</li>
+  </ul>
+  `
     
 })
 
@@ -416,34 +464,136 @@ nut.forEach(item=>{
 //6) list all the food items with category grain
 
 let grains = (items)=>{
-    let nut=items.filter(item=>item.category==='Grain');
-    return nut;
+    let grain=items.filter(item=>item.category==='Grain');
+    grainfood=grain.map(item=>item.foodname);
+    return grainfood;
 }
 
 let grain = grains(food);
-
-console.log("grains");
+foodGrain.innerHTML =`
+ <h1> food with category grain</h1>
+`
 
 grain.forEach(item=>{
-    console.log(item);
+  foodGrain.innerHTML +=`
+   <ul>
+   <li>${item}</li>
+   </ul>
+  `
     
 })
 
 
-//7) list all the food items with category grain
+//7) list all the food items with category Dairy
 
 let dairis = (items)=>{
-    let nut=items.filter(item=>item.category==='Dairy');
-    return nut;
+    let dairy=items.filter(item=>item.category==='Dairy');
+    dairyfood = dairy.map(item=>item.foodname);
+    return dairyfood;
 }
-
+foodDairy.innerHTML = `
+<h1>Dairy food</h1>
+`
 let dairy = dairis(food);
 
-console.log("dairis");
 
 dairy.forEach(item=>{
-    console.log(item);
+    foodDairy.innerHTML +=`
+    <ul>
+    <li>${item}</li>
+    </ul>
+    `
     
 })
 
 
+//8) list all the food items with calorie above 100
+
+let foodcalabove100=(items)=>{
+    let foodcal=items.filter(item=>item.calorie>100);
+    let calfood=foodcal.map(item=>item.foodname);
+    return calfood;
+}
+
+let foodcal =foodcalabove100(food);
+
+foodcalAb100.innerHTML=`
+
+<h1>food with calorie above the 100</h1>
+
+`
+
+foodcal.forEach(item=>{
+    foodcalAb100.innerHTML +=`
+    <ul> 
+    <li>${item}</li>
+    </ul>
+    `
+})
+
+//9)list all the food items with calorie below 100
+
+let foodcalbelow100=(items)=>{
+    let foodcal = items.filter(item=>item.calorie<100);
+    let foodcalb100=foodcal.map(item=>item.foodname);
+    return foodcalb100;
+}
+foodcalbel100.innerHTML = `
+<h1>food with calorie below 100</h1>
+`
+let foodcals =foodcalbelow100(food);
+
+
+
+foodcals.forEach((item)=>{
+    foodcalbel100.innerHTML +=`
+     <ul>
+     <li>
+     ${item}
+     </li>
+     </ul>
+    `
+})
+
+// 10) list all the food items with highest protien content to lowest
+
+let foodprohightolow=(items)=>{
+    let foodhtl=items.sort((a,b)=>b.protiens-a.protiens);
+    return foodhtl;
+}
+
+foodprothtol.innerHTML =`
+
+   <h1>food with protien high to low</h1>
+
+`
+
+let foodhtl=foodprohightolow(food);
+console.log(foodhtl);
+foodhtl.forEach((item)=>{
+    foodprothtol.innerHTML +=`
+     <ul>
+     <li>${item.foodname} protien- ${item.protiens}</li>
+     </ul>
+    `
+})
+
+//11)   list all the food items with lowest cab content to highest
+
+let foodcablowtohigh =(items)=>{
+    let foodlth =items.sort((a,b)=>a.cab-b.cab);
+    return foodlth;
+}
+
+foodcabltoh.innerHTML=`
+<h1>food cab low to high</h1>
+`
+
+let foodcablth=foodcablowtohigh(food);
+foodcablth.forEach((item)=>{
+    foodcabltoh.innerHTML +=`
+    <ul>
+    <li>${item.foodname} and cab- ${item.cab}</li>
+    </ul>
+    `
+})
